@@ -1,6 +1,8 @@
 # STM32F446RE VGA Display
 --------------
 Displaying data  in VGA Monitor using the stm32f4 microcontroller.
+
+Following data is about 800x600@60hz signal on VGA.
 ## Horizontal timing (line)
 Polarity of horizontal sync pulse is positive.
 
