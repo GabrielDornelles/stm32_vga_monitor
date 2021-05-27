@@ -2,7 +2,7 @@
 --------------
 Displaying data  in VGA Monitor using the stm32f4 microcontroller.
 
-Following data is about 800x600@60hz signal on VGA.
+Following data is about 800x600@60hz signal on VGA (but it didnt work properly on my clock speeds so I used 56hz instead. calcs are the same, the values are not, but there's a python file that will do that for you now).
 ## Horizontal timing (line)
 Polarity of horizontal sync pulse is positive.
 
