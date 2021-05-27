@@ -60,22 +60,24 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
-#define H_SYNC_Pin GPIO_PIN_0
-#define H_SYNC_GPIO_Port GPIOC
-#define V_SYNC_Pin GPIO_PIN_1
-#define V_SYNC_GPIO_Port GPIOC
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define GREEN_CHANNEL_Pin GPIO_PIN_0
+#define GREEN_CHANNEL_GPIO_Port GPIOB
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
+#define H_SYNC_Pin GPIO_PIN_4
+#define H_SYNC_GPIO_Port GPIOB
+#define V_SYNC_Pin GPIO_PIN_5
+#define V_SYNC_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -48,6 +48,14 @@ I wrote simple Python script to find values that would be closest to integer.
 	I'll choose arr=738, cause 2217.6/738 is 3.004, which is really close to 3, and we can only pick integer values
 	then: arr=738 psc=3
 	
+	Turns out I realized we need a half cycle timer to toggle the pin properly so:
+	
+	13.2µs, which is 75.75757576 kHz
+	75.76 kHz = 84mhz/arr*psc
+	arr*psc = 84mHz/75.75kHz
+	arr*psc = 1108.8
+	(everything is half but here's the calculations just in case you think its not)
+	then  arr=370 psc=3 (370*3=1110) better more than less
 
 ### V-Sync (TIM11-PC1): 
 	Whole frame takes 16.5792ms, which is 60.316hz
@@ -57,6 +65,10 @@ I wrote simple Python script to find values that would be closest to integer.
 	arr*psc =1,392,665.296
 	9877*141.0008 = 1,392,665.296
 	then: arr=9877 psc=141
+	
+	half cycle:
+	arr*psc =1,392,665.296/2=696,332.648
+	then: arr=9808 psc=71
 	
 
 **Note: we always take -1 from arr and psc**
