@@ -6,78 +6,9 @@ Real images through DMA and SPI not implemented, project here contains raw syncr
 
 ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/56324869/120241613-7feb8d00-c239-11eb-9a55-6d3e04cf165f.gif)
 
-Following data is about 800x600@60hz signal on VGA (but it didnt work properly on my clock speeds so I used 56hz instead. calcs are the same, the values are not, but there's a python file that will do that for you now).
-
 Use it for other resolutions and check before trying it with your clock speed:
 ![image](https://user-images.githubusercontent.com/56324869/120241839-fdaf9880-c239-11eb-82ce-ea659bd970ab.png)
 
-## Horizontal timing (line)
-Polarity of horizontal sync pulse is positive.
-
-|Scanline part	|Pixels	|Time [µs]|
-|----------|:----------:|:----------:|
-Visible area	|800|		20
-Front porch		|40|		1
-Sync pulse		|128|		3.2
-Back porch		|88|		2.2
-Whole line		|1056|	26.4
-
-## Vertical timing (frame)
-Polarity of vertical sync pulse is positive.
-
-| Frame part | Lines | Time [ms] |
-|----------|:----------:|:----------:|
-Visible area	|600|		15.84
-Front porch		|1|		0.0264
-Sync pulse		|4|		0.1056
-Back porch		|23|		0.6072
-Whole frame		|628|		16.5792
+![image](https://user-images.githubusercontent.com/56324869/120242034-5ed76c00-c23a-11eb-95d3-2f782bc822ad.png)
 
 
-## Timers for sync:
-Microcontroller clock is 84mHz
-For a 1 second timer we need two values that multiplied will be 84mhz, like 42000 and 2000.
-The equation to create a timer of x hz is:
-
-x = 84mhz/arr*psc
-
-where:
-psc = Prescaler
-arr = AutoReload Register (counter period)
-
-I wrote simple Python script to find values that would be closest to integer.
-### H-Sync(TIM10-PC0):
-	Whole line takes 26.4µs, which is 37.878787878788 kHz
-	
-	37.87 kHz = 84mhz/arr*psc
-	arr*psc = 84mHz/37.87kHz
-	arr*psc = 2217.6
-	
-	I'll choose arr=738, cause 2217.6/738 is 3.004, which is really close to 3, and we can only pick integer values
-	then: arr=738 psc=3
-	
-	Turns out I realized we need a half cycle timer to toggle the pin properly so:
-	
-	13.2µs, which is 75.75757576 kHz
-	75.76 kHz = 84mhz/arr*psc
-	arr*psc = 84mHz/75.75kHz
-	arr*psc = 1108.8
-	(everything is half but here's the calculations just in case you think its not)
-	then  arr=370 psc=3 (370*3=1110) better more than less
-
-### V-Sync (TIM11-PC1): 
-	Whole frame takes 16.5792ms, which is 60.316hz
-	
-	60.316 = 84mhz/arr*psc
-	arr*psc = 84mHz/60.316
-	arr*psc =1,392,665.296
-	9877*141.0008 = 1,392,665.296
-	then: arr=9877 psc=141
-	
-	half cycle:
-	arr*psc =1,392,665.296/2=696,332.648
-	then: arr=9808 psc=71
-	
-
-**Note: we always take -1 from arr and psc**
-	
