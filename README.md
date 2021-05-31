@@ -2,6 +2,10 @@
 --------------
 Displaying data  in VGA Monitor using the stm32f4 microcontroller.
 
+Real images through DMA and SPI not implemented, project here contains raw syncronism mapping and a few tests to see if colors were being displayed.
+
+![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/56324869/120241613-7feb8d00-c239-11eb-9a55-6d3e04cf165f.gif)
+
 Following data is about 800x600@60hz signal on VGA (but it didnt work properly on my clock speeds so I used 56hz instead. calcs are the same, the values are not, but there's a python file that will do that for you now).
 ## Horizontal timing (line)
 Polarity of horizontal sync pulse is positive.
